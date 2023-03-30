@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/root")
 public class RootController {
     private final RootService rootService;
 

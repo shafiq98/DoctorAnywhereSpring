@@ -12,7 +12,6 @@ To build a simple RESTful API using Java and Spring Boot.
    2. title: String (title of the task)
    3. description: String (description of the task)
    4. completed: Boolean (flag indicating whether the task has been completed)
- 
 3. Implement the following RESTful endpoints 
    1. GET /tasks: Get a list of all tasks
    2. POST /tasks: Create a new task
@@ -38,3 +37,7 @@ To build a simple RESTful API using Java and Spring Boot.
 * Please submit by ‘Replying All’ to the email thread which you received this assignment from.
 * Your submission should be in a form of a URL link. (Eg; A Google Drive link where we are able to access and download your
 * deliverable zip)
+
+---
+## TODO
+1. Implement error handling as per https://www.toptal.com/java/spring-boot-rest-api-error-handling

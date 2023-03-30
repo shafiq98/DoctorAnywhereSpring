@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class RootService {
-
     public RootService() {
-
     }
 
     public RootResponse generateRootResponse(String message) {
