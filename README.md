@@ -41,3 +41,10 @@ To build a simple RESTful API using Java and Spring Boot.
 ---
 ## TODO
 1. Implement error handling as per https://www.toptal.com/java/spring-boot-rest-api-error-handling
+
+----
+## Instructions
+```bash
+$ docker-compose up --build -d
+$ docker-compose down -v
+```
