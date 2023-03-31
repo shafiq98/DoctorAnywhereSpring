@@ -11,4 +11,6 @@ public class TaskRequest {
     private String title;
     @NonNull
     private String description;
+    @NonNull
+    private Boolean complete;
 }
