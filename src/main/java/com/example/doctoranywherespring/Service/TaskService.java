@@ -5,7 +5,6 @@ import com.example.doctoranywherespring.RequestDTO.TaskRequest;
 import com.example.doctoranywherespring.ResponseDTO.TaskResponse;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.aop.framework.AopConfigException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
