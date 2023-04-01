@@ -9,30 +9,31 @@ services:
       db:
         condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/doctoranywhere
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/doctoranywhere
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SQL_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SQL_DIALECT=org.hibernate.dialect.MySQLDialect
     ports:
       - "8080:8080"
     networks:
       - backend
   db:
-    image: 'postgres:15.2-alpine3.17'
+    image: mysql:8
     container_name: db
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready", "-d", "db_prod" ]
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       interval: 5s
       timeout: 60s
       retries: 5
       start_period: 5s
-    user: postgres
-    environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=doctoranywhere
     ports:
-      - "5432:5432"
+      - "3309:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: postgres
+      MYSQL_PASSWORD: postgres
+      MYSQL_DATABASE: doctoranywhere
     volumes:
       - db-data:/var/lib/postgresql/data
     networks:

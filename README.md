@@ -38,13 +38,15 @@ To build a simple RESTful API using Java and Spring Boot.
 * Your submission should be in a form of a URL link. (Eg; A Google Drive link where we are able to access and download your
 * deliverable zip)
 
----
-## TODO
-1. Implement error handling as per https://www.toptal.com/java/spring-boot-rest-api-error-handling
-
 ----
 ## Instructions
-```bash
+**Running with PostgreSQL**
+```bash\
 $ docker-compose up --build -d
+$ docker-compose down -v
+```
+**Running with MySQL**
+```bash\
+$ docker-compose -f docker-compose-mysql up --build -d
 $ docker-compose down -v
 ```
