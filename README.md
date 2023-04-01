@@ -17,11 +17,24 @@ To build a simple RESTful API using Java and Spring Boot.
 ----
 ## Instructions
 ### Running Locally
-1. Ensure there is a valid PostgreSQL or MySQL instance configured. For example:
+1. Ensure you have at least Java 17 installed, with maven correctly pointed to it
+```shell
+$ java --version
+openjdk 17.0.6 2023-01-17
+OpenJDK Runtime Environment Temurin-17.0.6+10 (build 17.0.6+10)
+OpenJDK 64-Bit Server VM Temurin-17.0.6+10 (build 17.0.6+10, mixed mode, sharing)
+$ mvn --version
+Apache Maven 3.8.2 (ea98e05a04480131370aa0c110b8c54cf726c06f)
+Maven home: C:\Users\{MY_SECRET_USERNAME}\AppData\Local\Programs\apache-maven-3.8.2
+Java version: 17.0.6, vendor: Eclipse Adoptium, runtime: C:\Program Files\Eclipse Adoptium\jdk-17.0.6.10-hotspot
+Default locale: en_SG, platform encoding: Cp1252
+OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+```
+2. Ensure there is a valid PostgreSQL or MySQL instance configured. For example:
    1. _A database called doctoranywhere_
    2. _A user called postgres_
    3. _User's password is postgres_
-2. Set the connection string, username and password as environment variables. For example:
+3. Set the connection string, username and password as environment variables. For example:
    1. _SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/doctoranywhere;_
    2. _SPRING_DATASOURCE_USERNAME=postgres;_
    3. _SPRING_DATASOURCE_PASSWORD=postgres_
