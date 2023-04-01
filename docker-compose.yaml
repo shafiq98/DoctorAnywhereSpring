@@ -2,8 +2,9 @@ version: '3.9'
 
 services:
   server:
-    build:
-      context: .
+    image: shafiq98/doctoranywhere-spring:1
+#    build:
+#      context: .
     container_name: server
     depends_on:
       db:
