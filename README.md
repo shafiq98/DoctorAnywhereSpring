@@ -1,45 +1,37 @@
 # DoctorAnywhere - Interns Take Home Assignment
+**Reference**: _https://github.com/shafiq98/DoctorAnywhereSpring_
 
 ---
 ## Assignment
 Building a Simple RESTful API with Java
 ## Objective
 To build a simple RESTful API using Java and Spring Boot.
-## Instructions
-1. Create a new Spring Boot project using your favourite IDE. Use Maven or Gradle to manage dependencies.
-2. Define a simple data model for a "Task" object that includes the following properties:
-   1. id: Long (a unique identifier for the task)
-   2. title: String (title of the task)
-   3. description: String (description of the task)
-   4. completed: Boolean (flag indicating whether the task has been completed)
-3. Implement the following RESTful endpoints 
-   1. GET /tasks: Get a list of all tasks
-   2. POST /tasks: Create a new task
-   3. GET /tasks/{id}: Get a single task by ID
-   4. PUT /tasks/{id}: Update a task by ID
-   5. DELETE /tasks/{id}: Delete a task by ID
-4. Use an in-memory data store (e.g., a List or Map) to store the task data.
-5. Test your API using Postman or any other REST client to ensure that it works as expected.
-6. Use git as the version control for your project.
-   
-## Bonus points
-* Implement error handling for each endpoint.
-* Use Spring Data JPA to store the task data in a MySQL database.
-* Use Spring Security to add authentication and authorization to the API.
-* Can run the application in a container.
 
-## Submission
-* The deadline for this assignment is 72 hours from the time this assignment landed in your Inbox. Tick tock tick tock !
-* The candidate should submit a zip file containing the following artifacts
-  * All the necessary files (Java classes and pom.xml file) required to run the Spring Boot application as a git repo
-  * Documentation with at least the steps to run the project as a README.md file.
-  * Your assumptions (if any) that would have made during your assignment.
-* Please submit by ‘Replying All’ to the email thread which you received this assignment from.
-* Your submission should be in a form of a URL link. (Eg; A Google Drive link where we are able to access and download your
-* deliverable zip)
-
+## Notes
+1. I was not entirely clear on how security could be implemented here, from a business perspective. (Perhaps to only allow users who create a task to remove it?)
+   1. Implementing a user class that are each allocated roles seemed too far from the scope of the original assignment so I did not wish to make that assumption and create such a system
+2. A creationDate and completedDate was added to the Task object, simply for usability purposes
+   1. It would make looking at task history easier, rather than just relying on the task id
+3. Postgres is used by default in this system because that was the database I was most comfortable with developing in initially, but MySQL was integrated in using a separate docker-compose file, which satisfies the project's requirement
+4. Docker image is built locally during docker-compose, for ease of development. DockerHub image is also available @ **shafiq98/doctoranywhere-spring:1**.
 ----
 ## Instructions
+### Running Locally
+1. Ensure there is a valid PostgreSQL or MySQL instance configured. For example:
+   1. _A database called doctoranywhere_
+   2. _A user called postgres_
+   3. _User's password is postgres_
+2. Set the connection string, username and password as environment variables. For example:
+   1. _SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/doctoranywhere;_
+   2. _SPRING_DATASOURCE_USERNAME=postgres;_
+   3. _SPRING_DATASOURCE_PASSWORD=postgres_
+      1. Note: Username and password are set as postgres even for MySQL instances, just for this example
+
+```bash
+mvn clean install spring-boot:run
+```
+---
+### Running using Docker
 **Running with PostgreSQL**
 ```bash\
 $ docker-compose up --build -d
@@ -50,3 +42,73 @@ $ docker-compose down -v
 $ docker-compose -f docker-compose-mysql up --build -d
 $ docker-compose down -v
 ```
+---
+## Expected Output
+**POST** Request from Postman
+```shell
+{
+    "id": 1,
+    "title": "Title 2",
+    "description": "Description 2",
+    "createdDate": "2023-04-01",
+    "complete": false,
+    "completedDate": null
+}
+```
+**GET ALL** Request from Postman
+```shell
+[
+    {
+        "id": 1,
+        "title": "Title 2",
+        "description": "Description 2",
+        "createdDate": "2023-04-01",
+        "complete": false,
+        "completedDate": null
+    }
+]
+```
+
+**PUT** Request from Postman
+```shell
+{
+    "id": 1,
+    "title": "Title 1",
+    "description": "Updated Description 2",
+    "createdDate": "2023-04-01",
+    "complete": true,
+    "completedDate": "2023-04-01"
+}
+```
+
+**GET ALL** Request from Postman _after PUT_
+```shell
+[
+    {
+        "id": 1,
+        "title": "Title 1",
+        "description": "Updated Description 2",
+        "createdDate": "2023-04-01",
+        "complete": true,
+        "completedDate": "2023-04-01"
+    }
+]
+```
+
+**DELETE** Request from Postman _after PUT_
+```shell
+{
+    "id": 1,
+    "title": "Title 1",
+    "description": "Updated Description 2",
+    "createdDate": "2023-04-01",
+    "complete": true,
+    "completedDate": "2023-04-01"
+}
+```
+
+**GET ALL** Request from Postman _after DELETE_
+```shell
+[]
+```
+
