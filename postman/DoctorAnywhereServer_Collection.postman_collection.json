@@ -10,37 +10,6 @@
 			"name": "Local Spring Instance",
 			"item": [
 				{
-					"name": "Base GET",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"message\" : \"Hello World\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/api/v1/root",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"root"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "[GOOD REQUEST] Create new Task",
 					"request": {
 						"method": "POST",
