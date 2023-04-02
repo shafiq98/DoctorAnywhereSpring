@@ -52,7 +52,7 @@ $ docker-compose down -v
 ```
 **Running with MySQL**
 ```bash\
-$ docker-compose -f docker-compose-mysql up --build -d
+$ docker-compose -f docker-compose-mysql.yaml up --build -d
 $ docker-compose down -v
 ```
 ---
